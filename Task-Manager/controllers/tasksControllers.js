@@ -1,5 +1,5 @@
 // import task Model (mongoose.Schema)
-const TaskModel = require("../models/taskModel");
+const TaskModel = require("../models/taskModels");
 
 // get all tasks
 const getAllTasks = async (req, res) => {
@@ -14,10 +14,18 @@ const getAllTasks = async (req, res) => {
 // get task
 const getTask = async (req, res) => {
     try {
-        const task = await TaskModel.findOne({ _id: req.params.id });
+        // get task id
+        const id = req.params.id;
+        // find task have the same id
+        const task = await TaskModel.findOne({ _id: id });
+        if (!task) {
+            return res
+                .status(404)
+                .json({ msg: `No Task Exist with this id : ${id}` });
+        }
         res.status(200).json({ task });
     } catch (error) {
-        res.status(404).json({ msg: error });
+        res.status(500).json({ msg: error });
     }
 };
 
