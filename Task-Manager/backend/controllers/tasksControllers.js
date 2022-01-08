@@ -21,7 +21,7 @@ const getTask = async (req, res) => {
         if (!task) {
             return res
                 .status(404)
-                .json({ msg: `No Task Exist with this id : ${id}` });
+                .json({ msg: `Task Not Found with id : ${id}` });
         }
         res.status(200).json({ task });
     } catch (error) {
@@ -42,30 +42,47 @@ const createTask = async (req, res) => {
 // update task
 const updateTask = async (req, res) => {
     try {
-        // get task name
-        const name = req.body.name;
-        // get task is completed
-        const completed = req.body.completed;
         // get task id
         const id = req.params.id;
         // update task info
-        const taskUpdate = await TaskModel.updateOne({
-            _id: id,
-            name,
-            completed,
-        });
-        // find the task was updated recently
-        const task = await TaskModel.findOne({ _id: id });
+        const taskUpdate = await TaskModel.findOneAndUpdate(
+            { _id: id },
+            req.body,
+            { new: true, runValidators: true }
+        );
         // send response to the user
-        res.status(201).json({ task });
+        res.status(201).json({ taskUpdate });
     } catch (error) {
         res.status(500).json({ error });
     }
 };
 
 // delete task
-const deleteTask = (req, res) => {
-    res.json({ taskId: req.params.id });
+const deleteTask = async (req, res) => {
+    try {
+        // get the task id
+        const id = req.params.id;
+        // find the task
+        const task = await TaskModel.findOne({ _id: id });
+        // if the task not found
+        if (!task) {
+            return res
+                .status(404)
+                .json({ msg: `Task Not Found with id : ${id}` });
+        }
+        // delete the task
+        const taskDelete = await TaskModel.deleteOne(task);
+        // get all exist tasks without the recently task it's was deleted
+        const tasks = await TaskModel.find({});
+        // send response to the user
+        res.status(201).json({
+            msg: { delete: "Task Has Been Successfully Deleted" },
+            tasks,
+        });
+    } catch (error) {
+        // send response to the user
+        res.status(500).json({ error });
+    }
 };
 
 // export the module

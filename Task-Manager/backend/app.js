@@ -11,6 +11,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./routes/.env" });
 
 // middleware
+app.use(express.static("./public"));
 app.use(express.json());
 
 // routes:
