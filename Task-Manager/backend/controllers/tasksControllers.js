@@ -5,7 +5,7 @@ const TaskModel = require("../models/taskModels");
 const getAllTasks = async (req, res) => {
     try {
         const tasks = await TaskModel.find({});
-        res.status(201).json({ tasks });
+        res.status(201).json(tasks);
     } catch (error) {
         res.status(500).json({ msg: error });
     }
@@ -23,7 +23,7 @@ const getTask = async (req, res) => {
                 .status(404)
                 .json({ msg: `Task Not Found with id : ${id}` });
         }
-        res.status(200).json({ task });
+        res.status(200).json(task);
     } catch (error) {
         res.status(500).json({ msg: error });
     }

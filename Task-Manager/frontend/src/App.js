@@ -1,13 +1,22 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import "./App.css";
 
-function App() {
+const App = () => {
     return (
-        <div className='bg-cyan-600'>
-            <header className='App-header'>
-                <h2 className='text-center font-bold'>Frontend React.JS</h2>
-            </header>
-        </div>
+        <>
+            <Router>
+                <Header />
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                </Routes>
+                <Footer />
+            </Router>
+        </>
     );
-}
+};
 
 export default App;

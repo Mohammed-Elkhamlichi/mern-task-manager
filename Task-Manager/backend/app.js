@@ -2,16 +2,19 @@
 const express = require("express");
 const app = express();
 
+var cors = require("cors");
+
 // Tasks Routes
 const tasks = require("./routes/tasksRoutes");
 const connectDB = require("./db/connectMongo");
 
 // config .env Variables
 const dotenv = require("dotenv");
-dotenv.config({ path: "./routes/.env" });
+dotenv.config();
 
 // middleware
-app.use(express.static("./public"));
+app.use(cors());
+// app.use(express.static("./public"));
 app.use(express.json());
 
 // routes:
