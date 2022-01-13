@@ -7,6 +7,7 @@ import { TaskContext } from "../Context/context";
 const baseURL = "http://localhost:4000/api/v1/tasks";
 
 const TaskList = () => {
+    const [isCompleted, setIsCompleted] = useState(false);
     const [state, dispatch] = useContext(TaskContext);
 
     let [tasks, setTasks] = useState([]);
@@ -37,20 +38,30 @@ const TaskList = () => {
                             className='flex items-center flex-row my-3 flex-nowrap bg-slate-100 p-3 rounded-lg shadow-stone-400 shadow'
                         >
                             <div className='flex-1'>{name}</div>
-                            <div className=''>
+                            <div className='flex flex-row items-center '>
                                 <input
                                     type='checkbox'
                                     name=''
                                     id=''
-                                    checked={completed ? true : false}
+                                    checked={completed || false}
+                                    Onchecked={(e) =>
+                                        setIsCompleted(!isCompleted)
+                                    }
+                                    style={{ margin: "5px" }}
                                 />
                                 <EditIcon
-                                    style={{ color: "gray", cursor: "pointer" }}
+                                    style={{
+                                        color: "gray",
+                                        cursor: "pointer",
+                                        margin: "5px",
+                                    }}
+                                    className='animate-bounce'
                                 />
                                 <DeleteIcon
                                     style={{
                                         color: "brown",
                                         cursor: "pointer",
+                                        margin: "5px",
                                     }}
                                 />
                             </div>

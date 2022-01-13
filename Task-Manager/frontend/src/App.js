@@ -6,17 +6,19 @@ import Footer from "./Components/Footer";
 import "./App.css";
 
 const App = () => {
-    return (
-        <>
-            <Router>
-                <Header />
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                </Routes>
-                <Footer />
-            </Router>
-        </>
-    );
+   const dev = "Mohammed Elkhamlichi";
+   console.log(dev);
+   return (
+      <>
+         <Router>
+            <Header />
+            <Routes>
+               <Route path='/' element={<Home />} />
+            </Routes>
+            <Footer />
+         </Router>
+      </>
+   );
 };
 
 export default App;

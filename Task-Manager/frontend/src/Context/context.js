@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { createContext, useReducer } from "react";
 import { reducer } from "./reducer";
 
 
@@ -10,7 +10,7 @@ const initialState = {
     },
 };
 
-export const TaskContext = React.createContext();
+export const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
     return (

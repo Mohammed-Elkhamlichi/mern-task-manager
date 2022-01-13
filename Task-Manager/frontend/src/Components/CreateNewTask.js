@@ -5,12 +5,11 @@ import { TaskContext } from "../Context/context";
 
 const CreateNewTask = () => {
     const [state, dispatch] = useContext(TaskContext);
-    console.log("state", state);
-    console.log("dispatch", dispatch);
     const taskName = useRef();
 
     // api url to  post task
     const baseURL = "http://localhost:4000/api/v1/tasks";
+    
 
     // handle form submition
     const handleSubmitForm = (e) => {
