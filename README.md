@@ -1,4 +1,4 @@
-# Learn_MERN
+## MERN Task Manager APP
 
 in this project i will learn Node.js , MongoDB, Express.js and React.js to become a MERN Full Stack Developer
 
