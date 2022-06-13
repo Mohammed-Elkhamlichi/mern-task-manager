@@ -2,6 +2,10 @@
 
 in this project i will learn Node.js , MongoDB, Express.js and React.js to become a MERN Full Stack Developer
 
-# First Thing
+bash
+```
+npm i
 
-## I Start Learn Node.js
+npm start
+
+```
